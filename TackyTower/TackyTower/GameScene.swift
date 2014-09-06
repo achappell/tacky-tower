@@ -8,10 +8,11 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, MenuDelegate {
     
     var menuLabelNode : SKLabelNode
     var menuNode : MenuNode
+    var draggingNode : RoomNode?
     
     required init(coder aDecoder: NSCoder!) {
         self.menuLabelNode = SKLabelNode(text: "Menu")
@@ -27,6 +28,7 @@ class GameScene: SKScene {
         self.menuNode.position = CGPoint(x: -128.0, y: 200.0)
         self.menuNode.userInteractionEnabled = true
         self.addChild(self.menuNode)
+        self.menuNode.delegate = self
         
         self.menuLabelNode.position = CGPoint(x: 20, y: 30)
         self.menuLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
@@ -39,14 +41,33 @@ class GameScene: SKScene {
         if CGRectContainsPoint(self.menuLabelNode.frame, location) {
             self.menuNode.toggleMenu()
         }
+        if let aDraggingNode = self.draggingNode {
+            self.draggingNode = nil
+        }
         super.mouseDown(theEvent)
     }
     
     override func mouseMoved(theEvent: NSEvent!) {
-        //self.placeableNode.position = theEvent.locationInNode(self)
+        if let aDraggingNode = self.draggingNode {
+            aDraggingNode.position = theEvent.locationInNode(self)
+        }
+        super.mouseMoved(theEvent)
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    // MARK: MenuDelegate
+    
+    func menu(menu: MenuNode, didChooseItem item: RoomNode) {
+        
+        self.draggingNode = item
+        item.xScale = 4
+        item.yScale = 4
+        item.zPosition = 1000
+        
+        self.addChild(item)
+        
     }
 }

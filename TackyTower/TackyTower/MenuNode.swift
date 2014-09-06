@@ -8,26 +8,28 @@
 
 import SpriteKit
 
+protocol MenuDelegate {
+    func menu(menu: MenuNode, didChooseItem item: RoomNode)
+}
+
 class MenuNode: SKSpriteNode {
     
     override var acceptsFirstResponder: Bool { return true }
     var isOpen : Bool
-    var placeableNode : SKSpriteNode
-    var isDraggingNode : Bool
+    var lobbyNode : LobbyNode
     let openMenuAction : SKAction!
     let closeMenuAction : SKAction!
+    var delegate : MenuDelegate?
 
     required init(coder aDecoder: NSCoder!) {
         self.isOpen = false
-        self.placeableNode = SKSpriteNode(color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
-        self.isDraggingNode = false
+        self.lobbyNode = LobbyNode(color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
         super.init(coder: aDecoder)
     }
     
     init(openMenuAction : SKAction, closeMenuAction : SKAction) {
         self.isOpen = false
-        self.placeableNode = SKSpriteNode(texture:SKTexture(image: NSImage(named: "lobby")) ,color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
-        self.isDraggingNode = false
+        self.lobbyNode = LobbyNode(texture:SKTexture(image: NSImage(named: "lobby")) ,color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
         self.openMenuAction = openMenuAction
         self.closeMenuAction = closeMenuAction
         
@@ -37,28 +39,27 @@ class MenuNode: SKSpriteNode {
     override func mouseDown(theEvent: NSEvent!) {
         let location = theEvent.locationInNode(self)
         
-        if CGRectContainsPoint(self.placeableNode.frame, location) {
-            self.isDraggingNode = !self.isDraggingNode
+        if CGRectContainsPoint(self.lobbyNode.frame, location) {
+            if let menuDelegate = self.delegate {
+                let lobbyNodeCopy = self.lobbyNode.copy() as LobbyNode
+                menuDelegate.menu(self, didChooseItem: lobbyNodeCopy)
+                self.userInteractionEnabled = false
+            }
         }
-    }
-    
-    override func mouseMoved(theEvent: NSEvent!) {
-        if self.isDraggingNode {
-            self.placeableNode.position = theEvent.locationInNode(self)
-        }
+        super.mouseDown(theEvent)
     }
     
     func toggleMenu() {
         if self.isOpen {
             self.runAction(self.closeMenuAction) {
                 self.isOpen = !self.isOpen
-                self.placeableNode.removeFromParent()
+                self.lobbyNode.removeFromParent()
             }
         }
         else {
-            self.addChild(self.placeableNode)
-            self.placeableNode.position = CGPointZero
-            self.placeableNode.zPosition = 1
+            self.addChild(self.lobbyNode)
+            self.lobbyNode.position = CGPointZero
+            self.lobbyNode.zPosition = 1
             self.runAction(self.openMenuAction) {
                 self.isOpen = !self.isOpen
             }
