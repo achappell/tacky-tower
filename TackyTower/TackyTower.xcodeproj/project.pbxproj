@@ -15,7 +15,6 @@
 		E05D446919B92D38001782D3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E05D446719B92D38001782D3 /* MainMenu.xib */; };
 		E05D447519B92D38001782D3 /* TackyTowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D447419B92D38001782D3 /* TackyTowerTests.swift */; };
 		E05D447F19B93CC7001782D3 /* MenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D447E19B93CC7001782D3 /* MenuNode.swift */; };
-		E0C8B37F19B961C700C208D9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C8B37E19B961C700C208D9 /* MenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +40,6 @@
 		E05D447319B92D38001782D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E05D447419B92D38001782D3 /* TackyTowerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackyTowerTests.swift; sourceTree = "<group>"; };
 		E05D447E19B93CC7001782D3 /* MenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNode.swift; sourceTree = "<group>"; };
-		E0C8B37E19B961C700C208D9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +88,6 @@
 				E05D446719B92D38001782D3 /* MainMenu.xib */,
 				E05D445B19B92D38001782D3 /* Supporting Files */,
 				E05D447E19B93CC7001782D3 /* MenuNode.swift */,
-				E0C8B37E19B961C700C208D9 /* MenuController.swift */,
 			);
 			path = TackyTower;
 			sourceTree = "<group>";
@@ -221,7 +218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0C8B37F19B961C700C208D9 /* MenuController.swift in Sources */,
 				E05D447F19B93CC7001782D3 /* MenuNode.swift in Sources */,
 				E05D446219B92D38001782D3 /* GameScene.swift in Sources */,
 				E05D446019B92D38001782D3 /* AppDelegate.swift in Sources */,

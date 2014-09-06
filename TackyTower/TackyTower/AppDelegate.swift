@@ -46,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.skView!.showsNodeCount = true
         }
         self.window.acceptsMouseMovedEvents = true
+        
     }
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
