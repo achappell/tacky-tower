@@ -43,7 +43,6 @@ class MenuNode: SKSpriteNode {
             if let menuDelegate = self.delegate {
                 let lobbyNodeCopy = self.lobbyNode.copy() as LobbyNode
                 menuDelegate.menu(self, didChooseItem: lobbyNodeCopy)
-                self.userInteractionEnabled = false
             }
         }
         super.mouseDown(theEvent)

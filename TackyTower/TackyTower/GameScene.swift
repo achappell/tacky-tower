@@ -13,6 +13,7 @@ class GameScene: SKScene, MenuDelegate {
     var menuLabelNode : SKLabelNode
     var menuNode : MenuNode
     var draggingNode : RoomNode?
+    var grid : Grid!
     
     required init(coder aDecoder: NSCoder!) {
         self.menuLabelNode = SKLabelNode(text: "Menu")
@@ -33,6 +34,8 @@ class GameScene: SKScene, MenuDelegate {
         self.menuLabelNode.position = CGPoint(x: 20, y: 30)
         self.menuLabelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         self.addChild(menuLabelNode)
+        
+        self.grid = Grid(rows: 40, columns: 60, size: self.frame.size)
     }
     
     override func mouseDown(theEvent: NSEvent) {
@@ -49,7 +52,12 @@ class GameScene: SKScene, MenuDelegate {
     
     override func mouseMoved(theEvent: NSEvent!) {
         if let aDraggingNode = self.draggingNode {
-            aDraggingNode.position = theEvent.locationInNode(self)
+            let position = theEvent.locationInNode(self)
+            let topLeftPoint = CGPoint(x: position.x - aDraggingNode.size.width / 2.0, y: position.y - aDraggingNode.size.height)
+            
+            let newPosition = self.grid.snapToGridPositionForPosition(topLeftPoint)
+            
+            aDraggingNode.position = CGPoint(x: newPosition.x + aDraggingNode.size.width / 2.0, y: newPosition.y + aDraggingNode.size.height)
         }
         super.mouseMoved(theEvent)
     }
