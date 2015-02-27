@@ -15,7 +15,7 @@ class GameScene: SKScene, MenuDelegate {
     var draggingNode : RoomNode?
     var grid : Grid!
     
-    required init(coder aDecoder: NSCoder!) {
+    required init?(coder aDecoder: NSCoder) {
         self.menuLabelNode = SKLabelNode(text: "Menu")
         self.menuNode = MenuNode(openMenuAction: SKAction.moveByX(256, y: 0, duration: 0.5), closeMenuAction: SKAction.moveByX(-256, y: 0, duration: 0.5))
         
@@ -50,7 +50,7 @@ class GameScene: SKScene, MenuDelegate {
         super.mouseDown(theEvent)
     }
     
-    override func mouseMoved(theEvent: NSEvent!) {
+    override func mouseMoved(theEvent: NSEvent) {
         if let aDraggingNode = self.draggingNode {
             let position = theEvent.locationInNode(self)
             let topLeftPoint = CGPoint(x: position.x - aDraggingNode.size.width / 2.0, y: position.y - aDraggingNode.size.height)

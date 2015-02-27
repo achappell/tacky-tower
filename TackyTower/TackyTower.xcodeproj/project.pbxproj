@@ -153,6 +153,7 @@
 				E05D445419B92D38001782D3 /* Sources */,
 				E05D445519B92D38001782D3 /* Frameworks */,
 				E05D445619B92D38001782D3 /* Resources */,
+				652AC3B064AD4053B5483E8B /* Find unused imports */,
 			);
 			buildRules = (
 			);
@@ -237,6 +238,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		652AC3B064AD4053B5483E8B /* Find unused imports */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Find unused imports";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"/Users/achappell/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Users/achappell/Documents/Development/Mac/tacky-tower/TackyTower\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E05D445419B92D38001782D3 /* Sources */ = {
@@ -368,6 +386,7 @@
 				INFOPLIST_FILE = TackyTower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -379,6 +398,7 @@
 				INFOPLIST_FILE = TackyTower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

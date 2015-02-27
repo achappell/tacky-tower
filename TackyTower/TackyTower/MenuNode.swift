@@ -21,7 +21,7 @@ class MenuNode: SKSpriteNode {
     let closeMenuAction : SKAction!
     var delegate : MenuDelegate?
 
-    required init(coder aDecoder: NSCoder!) {
+    required init?(coder aDecoder: NSCoder) {
         self.isOpen = false
         self.lobbyNode = LobbyNode(color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
         super.init(coder: aDecoder)
@@ -29,14 +29,14 @@ class MenuNode: SKSpriteNode {
     
     init(openMenuAction : SKAction, closeMenuAction : SKAction) {
         self.isOpen = false
-        self.lobbyNode = LobbyNode(texture:SKTexture(image: NSImage(named: "lobby")) ,color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
+        self.lobbyNode = LobbyNode(texture:SKTexture(image: NSImage(named: "lobby")!) ,color: NSColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), size: CGSize(width: 30, height: 10))
         self.openMenuAction = openMenuAction
         self.closeMenuAction = closeMenuAction
         
-        super.init(texture: SKTexture(image: NSImage(named: "menuBackground")), color: NSColor(red: 0.3, green: 0.2, blue: 0.4, alpha: 1), size: CGSize(width: 64, height: 64))
+        super.init(texture: SKTexture(image: NSImage(named: "menuBackground")!), color: NSColor(red: 0.3, green: 0.2, blue: 0.4, alpha: 1), size: CGSize(width: 64, height: 64))
     }
     
-    override func mouseDown(theEvent: NSEvent!) {
+    override func mouseDown(theEvent: NSEvent) {
         let location = theEvent.locationInNode(self)
         
         if CGRectContainsPoint(self.lobbyNode.frame, location) {
